@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head>
+<title>Color Guessing Game Part 1</title>
+<meta name="author" content="Arun Karthikeyan">
+</head>
+
+<body onload="start_game()">
+  <script>
+  function start_game(){
+    var choice;
+    colors = ["blue","cyan","gold","gray","green","magenta","orange","red","white","yellow"];
+    var target = colors[Math.floor(Math.random()*10)];
+    alert(target);
+    do{
+    choice = prompt("I am thinking of one of these colors:\n\nblue,cyan,gold,gray,green,magenta,orange,red,white,yellow\n\nWhat color am I thinking of ?").trim().toLowerCase();
+  }while(choice!=target);
+  }
+
+  </script>
+</body>

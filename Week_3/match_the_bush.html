@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta name="Author" content="Arun Karthikeyan">
+    <title>JS TEST</title>
+    <style>
+      img{position:absolute; height:100px; width:100px;}
+      div{position:absolute; width: 500px; height:500px;}
+      #rightSide{left:500px; border-left:1px solid black;}
+    </style>
+  </head>
+
+  <body onload="generateFaces()">
+    <audio id="bgm" src="bit.mp3" loop></audio>
+    <audio id="advice" src="buss_dialogue.mp3"></audio>
+    <h1>Match the Bush</h1>
+    <h3>Click on the extra bush on the left</h3>
+    <div id="leftSide"></div>
+    <div id="rightSide"></div>
+    <script>
+
+    var numberOfFaces = 5;
+    var leftSideDiv = document.getElementById("leftSide");
+    var rightSideDiv = document.getElementById("rightSide");
+    var theBody = document.getElementsByTagName("body")[0];
+    var audioTheme = document.getElementById("bgm");
+    var imgPath="face_bush.gif";
+
+    function generateFaces(){
+      for(var i=0;i<numberOfFaces;++i){
+        var imgElement = document.createElement("img");
+        imgElement.src=imgPath;
+        imgElement.style.top=Math.floor(Math.random()*401)+"px";
+        imgElement.style.left=Math.floor(Math.random()*401)+"px";
+        leftSideDiv.appendChild(imgElement);
+      }
+
+      var leftSideImages = leftSideDiv.cloneNode(true);
+
+      leftSideImages.removeChild(leftSideImages.lastChild);
+      rightSideDiv.appendChild(leftSideImages);
+
+      audioTheme.play();
+
+      leftSideDiv.lastChild.onclick = function toNextLevel(event){
+        event.stopPropagation();
+        numberOfFaces+=5;
+        while(leftSideDiv.lastChild){
+          leftSideDiv.removeChild(leftSideDiv.lastChild);
+        }
+        while(rightSideDiv.lastChild){
+          rightSideDiv.removeChild(rightSideDiv.lastChild);
+        }
+        generateFaces();
+      };
+
+      theBody.onclick = function gameOver(){
+        leftSideDiv.lastChild.style.border="10px solid red";
+        audioTheme.pause();
+        if(confirm("nee innum ennoda level ku varala, want tips ?")){
+          document.getElementById("advice").play();
+        }
+        alert("All the best ");
+        theBody.onclick = null;
+        leftSideDiv.lastChild.onclick = null;
+      };
+    }
+
+    </script>
+  </body>
+
+</html>

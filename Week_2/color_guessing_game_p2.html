@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+<title>Color Guessing Game Part 2</title>
+<meta name="author" content="Arun Karthikeyan">
+</head>
+
+<body onload="start_game()">
+  <script>
+  var guesses = 0;
+  function start_game(){
+    var choice;
+    var choiceIdx;
+    var randomIdx = Math.floor(Math.random()*10);
+    var revColors = [];
+    revColors.blue=0;
+    revColors.cyan=1;
+    revColors.gold=2;
+    revColors.gray=3;
+    revColors.green=4;
+    revColors.magenta=5;
+    revColors.orange=6;
+    revColors.red=7;
+    revColors.white=8;
+    revColors.yellow=9;
+
+    do{
+    choice = prompt("I am thinking of one of these colors:\n\nblue,cyan,gold,gray,green,magenta,orange,red,white,yellow\n\nWhat color am I thinking of ?").trim().toLowerCase();
+    choiceIdx = revColors[choice];
+    guesses++;
+  }while(!check_guess(choice,choiceIdx,randomIdx));
+  }
+
+  function check_guess(choice,choiceIdx,randomIdx){
+    var finish = false;
+    if(choiceIdx==undefined){
+      alert("Sorry, I don't recognize your color.\n\nPlease try again.")
+    }else if (choiceIdx<randomIdx){
+      alert("Sorry, your guess is not correct!\n\nHint: your color is alphabetically lower than mine.\n\nPlease try again.");
+    }else if (choiceIdx>randomIdx){
+      alert("Sorry, your guess is not correct!\n\nHint: your color is alphabetically higher than mine.\n\nPlease try again.");
+    }else{
+      document.body.style.background=choice;
+      alert("Congratulations! You have guessed the color!\n\nIt took you "+guesses+" guess(es) to finish the game!\n\nYou can see the color in the background.");
+      finish=true;
+    }
+    return finish;
+  }
+  </script>
+</body>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Naughty Page</title>
+  <meta name="author" content="Arun Karthikeyan">
+</head>
+
+<body onload="check_user_age()">
+<p>This is a Naughty Page<p>
+<script>
+function check_user_age(){
+  user_age = get_user_age();
+  if(user_age<18){
+    alert("Sorry this page is inappropriate for young viewers, please try again after you've grown up");
+  }else{
+    alert("Welcome to our page grown up/ pretending to be grown up");
+  }
+}
+function get_user_age(){
+  user_age = prompt("Please enter your age");
+  return user_age;
+}
+</script>
+</body>
+
+</html>

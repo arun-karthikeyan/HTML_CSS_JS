@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    function counter(){
+      var count = 0;
+      var func = function(){
+        count++;
+        alert(count);
+      };
+      return func;
+    }
+
+    var count = counter();
+    count();
+    count();
+    
+    var count2 = counter();
+    count2();
+    count2();
+    </script>
+  </head>
+  <html>

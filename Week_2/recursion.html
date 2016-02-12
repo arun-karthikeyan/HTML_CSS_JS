@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Recursion Example</title>
+  <meta name="author" content="Arun Karthikeyan">
+</head>
+<body onload="alert('she is my '+build_great(0))">
+  <p>Visalatchi</p>
+<script>
+function build_great(depth){
+  if(depth>0){
+    return "great "+build_great(depth-1);
+  }else{
+    return "grandmother !";
+  }
+}
+</script>
+</body>
+
+</html>
